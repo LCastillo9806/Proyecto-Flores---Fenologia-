@@ -1,0 +1,33 @@
+=== A_rayando_vs_corte
+Matriz (filas = predicho, columnas = real), umbral de confianza 0.25
+                   rayando_color     punto_corte           fondo
+   rayando_color             417             113             306
+     punto_corte              86             741             571
+           fondo             297             245               0
+   rayando_color: VP=417 FP=419 FN=383  precisión=0.499 recall=0.521 F1=0.510
+     punto_corte: VP=741 FP=657 FN=358  precisión=0.530 recall=0.674 F1=0.594
+
+Exactitud de CLASIFICACIÓN entre botones detectados (sin fondo): 0.853
+Exactitud GLOBAL incluyendo omisiones y falsos positivos: 0.417
+=== B_garbanzo_vs_rayando
+Matriz (filas = predicho, columnas = real), umbral de confianza 0.25
+                        garbanzo   rayando_color           fondo
+        garbanzo            2913              47            2035
+   rayando_color              23             471             589
+           fondo            1298             282               0
+        garbanzo: VP=2913 FP=2082 FN=1321  precisión=0.583 recall=0.688 F1=0.631
+   rayando_color: VP=471 FP=612 FN=329  precisión=0.435 recall=0.589 F1=0.500
+
+Exactitud de CLASIFICACIÓN entre botones detectados (sin fondo): 0.980
+Exactitud GLOBAL incluyendo omisiones y falsos positivos: 0.442
+=== C_cerrado_vs_abierta
+Matriz (filas = predicho, columnas = real), umbral de confianza 0.25
+                   boton_cerrado    flor_abierta           fondo
+   boton_cerrado            3569               4            2142
+    flor_abierta              66             141              70
+           fondo            2498              13               0
+   boton_cerrado: VP=3569 FP=2146 FN=2564  precisión=0.624 recall=0.582 F1=0.602
+    flor_abierta: VP=141 FP=136 FN=17  precisión=0.509 recall=0.892 F1=0.648
+
+Exactitud de CLASIFICACIÓN entre botones detectados (sin fondo): 0.981
+Exactitud GLOBAL incluyendo omisiones y falsos positivos: 0.436

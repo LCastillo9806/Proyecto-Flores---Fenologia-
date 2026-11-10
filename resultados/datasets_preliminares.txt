@@ -1,0 +1,4 @@
+Fuente de etiquetas: preanot
+A_rayando_vs_corte {'train': '4160 mosaicos, objetos por clase [2561, 4306]', 'test': '1226 mosaicos, objetos por clase [800, 1099]', 'val': '464 mosaicos, objetos por clase [408, 758]'}
+B_garbanzo_vs_rayando {'train': '5019 mosaicos, objetos por clase [8503, 2561]', 'test': '1690 mosaicos, objetos por clase [4234, 800]', 'val': '484 mosaicos, objetos por clase [940, 408]'}
+C_cerrado_vs_abierta {'train': '5668 mosaicos, objetos por clase [15370, 709]', 'test': '1782 mosaicos, objetos por clase [6133, 158]', 'val': '565 mosaicos, objetos por clase [2106, 41]'}

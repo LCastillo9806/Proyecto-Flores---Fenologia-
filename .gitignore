@@ -1,0 +1,11 @@
+# datos y pesados (no se versionan)
+raw/
+work/
+datasets/
+runs/
+labelstudio/
+*.pt
+*.onnx
+.venv*/
+__pycache__/
+*.ipynb_checkpoints

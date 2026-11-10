@@ -1,0 +1,71 @@
+# Configuración del proyecto: estados fenológicos de rosa en fotos de dron
+raiz: C:/Users/lab22/rosas_dataset
+raw: C:/Users/lab22/rosas_dataset/raw/IMAGENES_DRONE_PROYECCION_FLOR
+
+# Todas las fotos se llevan a este ancho para que un botón mida lo mismo en píxeles
+# (las de agosto son 4000x2250 y las de septiembre 8064x6048 con el mismo campo visual).
+ancho_ref: 8064
+
+# 4 estados que se anotan UNA vez; los 3 modelos se derivan de aquí.
+estados: [garbanzo, rayando_color, punto_corte, abierta]
+
+# Partición por grupo fecha_bloque (las fotos de un mismo bloque se solapan).
+particion:
+  test: [02_09_26_BL18_freedom_JPEG, 02_09_26_BL19_vainilla_JPEG]
+  val:  [28_08_26_BL22_vainilla_jpg, 28_08_26_BL32_Freedom_JPG]
+  # el resto va a train
+
+# Tres modelos binarios; cada clase es la unión de estados anotados.
+# Los estados que no aparecen en un modelo se dejan como fondo.
+modelos:
+  A_rayando_vs_corte:
+    rayando_color: [rayando_color]
+    punto_corte:   [punto_corte]
+  B_garbanzo_vs_rayando:
+    garbanzo:      [garbanzo]
+    rayando_color: [rayando_color]
+  C_cerrado_vs_abierta:
+    boton_cerrado: [garbanzo, rayando_color, punto_corte]
+    flor_abierta:  [abierta]
+
+tile: 1024
+solape: 0.25
+
+entrenamiento:
+  modelo: yolo26s.pt
+  imgsz: 1024
+  epochs: 150
+  patience: 40
+  batch: 8
+  seed: 0
+
+# Ejemplos para la preanotación con YOLOE (indicaciones visuales). Fotos de TRAIN.
+# clase: 0 garbanzo, 1 rayando_rojo, 2 corte_rojo, 3 rayando_blanco, 4 corte_blanco ; [x, y, lado] a ancho_ref
+ejemplos:
+  09_09_26_BL50PM_FREEDOM__DJI_0129.jpg:
+    - [0, 4598, 3258, 75]
+    - [0, 4742, 3863, 60]
+    - [1, 1775, 2862, 70]
+    - [1, 2568, 2668, 75]
+    - [2, 2943, 2575, 115]
+    - [2, 2053, 2695, 125]
+  28_08_26_BL64_vainilla_JPG__DJI_0071.jpg:
+    - [0, 5520, 3280, 45]
+    - [0, 5278, 3125, 35]
+    - [3, 5348, 3042, 60]
+    - [3, 7085, 3078, 68]
+    - [4, 6148, 3180, 105]
+    - [4, 5248, 2910, 112]
+
+# 10 fotos de train que se corrigen primero para entrenar el modelo semilla
+semilla:
+  - 02_09_26_BL17_vainilla_JPEG__DJI_0365.jpg
+  - 02_09_26_BL17_vainilla_JPEG__DJI_0393.jpg
+  - 02_09_26_BL50prmv_freedom_JPEG__DJI_0566.jpg
+  - 02_09_26_BL50prmv_freedom_JPEG__DJI_0581.jpg
+  - 09_09_26_BL50PM_FREEDOM__DJI_0061.jpg
+  - 09_09_26_BL50PM_FREEDOM__DJI_0124.jpg
+  - 09_09_26_BL52PM_FREEDOM__DJI_0204.jpg
+  - 09_09_26_BL52PM_FREEDOM__DJI_0264.jpg
+  - 28_08_26_BL64_vainilla_JPG__DJI_0089.jpg
+  - 28_08_26_BL64_vainilla_JPG__DJI_0132.jpg
